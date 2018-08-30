@@ -24,6 +24,14 @@ namespace ConoleApp
 
             MyPro.tuliswarna(6, 7, ":: MENU ::", ConsoleColor.DarkGreen, ConsoleColor.White);
 
+            string[] menu = new string[7];
+            menu[0] = "siswa";
+            menu[1] = "dosen";
+            menu[2] = "matkul";
+            menu[3] = "nilai";
+            menu[4] = "absen";
+            menu[5] = "bayar";
+            menu[6] = "keluar";
 
             for (int a = 0; a < 7; a++)
             {
