@@ -103,7 +103,7 @@ namespace ConoleApp
                             } while (jawaban.ToUpper() == "Y");
                         }
                     }
-            } while ((tombol.Key != ConsoleKey.Enter) || (tombol.Key != ConsoleKey.LeftArrow));
+            } while (tombol.Key != ConsoleKey.Enter);
 
                
 
