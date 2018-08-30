@@ -7,50 +7,82 @@ using System.Threading.Tasks;
 namespace ConoleApp
 {
     class MyPro
-    { 
-        static public void buatkotak(int kiri,int atas,int kanan,int bawah)
+    {
+        static public void buatkotak(int kiri, int atas, int kanan, int bawah, ConsoleColor warnateks, ConsoleColor warnabackgroud)
         {
             Console.SetCursorPosition(kiri,atas);
-            Console.Write("╒");
+            Console.ForegroundColor = warnateks;
+            Console.BackgroundColor = warnabackgroud;
+            Console.Write("╒"); 
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Black;
             //System.Threading.Thread.Sleep(200);
 
             for (int a = kiri+1; a <= kanan-1; a++)
             { 
                 Console.SetCursorPosition(a,atas);
+                Console.ForegroundColor = warnateks;
+                Console.BackgroundColor = warnabackgroud;
                 Console.Write("═");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.BackgroundColor = ConsoleColor.Black; 
             }
             //System.Threading.Thread.Sleep(200);
 
             Console.SetCursorPosition(kanan,atas);
+            Console.ForegroundColor = warnateks;
+            Console.BackgroundColor = warnabackgroud;
             Console.Write("╕");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Black;
             //System.Threading.Thread.Sleep(200);
 
             for (int a = atas+1; a <= bawah-1; a++)
             {
                 Console.SetCursorPosition(kanan, a);
+                Console.ForegroundColor = warnateks;
+                Console.BackgroundColor = warnabackgroud;
                 Console.Write("│");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.BackgroundColor = ConsoleColor.Black;
             }
             //System.Threading.Thread.Sleep(200);
 
             Console.SetCursorPosition(kanan, bawah);
+            Console.ForegroundColor = warnateks;
+            Console.BackgroundColor = warnabackgroud;
             Console.Write("╛");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Black;
             //System.Threading.Thread.Sleep(200);
 
             for (int a = kanan-1; a >= kiri+1; a--)
             {
                 Console.SetCursorPosition(a, bawah);
+                Console.ForegroundColor = warnateks;
+                Console.BackgroundColor = warnabackgroud;
                 Console.Write("═");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.BackgroundColor = ConsoleColor.Black;
             }
             //System.Threading.Thread.Sleep(200);
 
             Console.SetCursorPosition(kiri, bawah);
+            Console.ForegroundColor = warnateks;
+            Console.BackgroundColor = warnabackgroud;
             Console.Write("╘");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Black;
             //System.Threading.Thread.Sleep(200);
 
             for (int a = bawah-1; a >= atas +1; a--)
             {
                 Console.SetCursorPosition(kiri, a);
+                Console.ForegroundColor = warnateks;
+                Console.BackgroundColor = warnabackgroud;
                 Console.Write("│");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.BackgroundColor = ConsoleColor.Black;
             }
             //System.Threading.Thread.Sleep(200);
 
