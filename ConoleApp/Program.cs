@@ -16,7 +16,8 @@ namespace ConoleApp
             Console.CursorVisible = false;
             MyPro.buatkotak(2,1,118,5,ConsoleColor.Green,ConsoleColor.Black);
             MyPro.buatkotak(2, 6, 20, 30, ConsoleColor.DarkGray, ConsoleColor.Black);
-            MyPro.buatkotak(21, 6, 118, 30, ConsoleColor.DarkGray, ConsoleColor.Black);
+            MyPro.buatkotak(21, 6, 42, 30, ConsoleColor.DarkGray, ConsoleColor.Black);
+            MyPro.buatkotak(43, 6, 118, 30, ConsoleColor.DarkGray, ConsoleColor.Black);
 
             string kepala = "Wearnes Education Center Madiun";
             MyPro.tuliswarna((120 - kepala.Length) / 2, 2, kepala,ConsoleColor.DarkRed,ConsoleColor.Black);
@@ -25,16 +26,16 @@ namespace ConoleApp
             string subkepala = "Inforkom 1 - 2018";
             MyPro.tulis((120 - subkepala.Length) / 2, 3, subkepala);
 
-            MyPro.tuliswarna(6, 7, ":: MENU ::", ConsoleColor.DarkGreen, ConsoleColor.White);
+            MyPro.tuliswarna(6, 7, ":: MENU ::", ConsoleColor.DarkMagenta, ConsoleColor.Green);
 
             string[] menu = new string[7];
-            menu[0] = "siswa";
-            menu[1] = "dosen";
-            menu[2] = "matkul";
-            menu[3] = "nilai";
-            menu[4] = "absen";
-            menu[5] = "bayar";
-            menu[6] = "keluar";
+            menu[0] = "Siswa";
+            menu[1] = "Dosen";
+            menu[2] = "Matkul";
+            menu[3] = "Nilai";
+            menu[4] = "Absen";
+            menu[5] = "Bayar";
+            menu[6] = "Keluar";
 
             for (int a = 0; a < 7; a++)
             {
@@ -42,11 +43,11 @@ namespace ConoleApp
             }
 
             int pilih = 0;
-            MyPro.tuliswarna(6, 8, menu[pilih], ConsoleColor.DarkYellow, ConsoleColor.DarkBlue);
+            MyPro.tuliswarna(6, 8, menu[pilih], ConsoleColor.Black, ConsoleColor.White);
 
             ConsoleKeyInfo tombol;
             bool mainmenu = true;
-
+            
             do
             {
                 tombol = Console.ReadKey(true);
@@ -58,7 +59,7 @@ namespace ConoleApp
                         pilih = 0;
                     }
                     else { pilih++; };
-                    MyPro.tuliswarna(6, 8 + pilih, menu[pilih], ConsoleColor.DarkYellow, ConsoleColor.DarkBlue);
+                    MyPro.tuliswarna(6, 8 + pilih, menu[pilih], ConsoleColor.Black, ConsoleColor.White);
 
                 }
                 
@@ -70,7 +71,7 @@ namespace ConoleApp
                         pilih = 6;
                     }
                     else { pilih--; };
-                    MyPro.tuliswarna(6, 8 + pilih, menu[pilih], ConsoleColor.DarkYellow, ConsoleColor.DarkBlue);
+                    MyPro.tuliswarna(6, 8 + pilih, menu[pilih], ConsoleColor.Black, ConsoleColor.White);
                 }
 
                 if (tombol.Key == ConsoleKey.LeftArrow)
@@ -82,64 +83,199 @@ namespace ConoleApp
                     {
                         if (menu[pilih] == menu[0])
                         {
-                                Console.SetCursorPosition(22,8);
-                                string[] pilihansiswa = new string[4];
-                                pilihansiswa[0] = "TAMBAH DATA SISWA";
-                                pilihansiswa[1] = "TAMPIL DATA SISWA";
-                                pilihansiswa[2] = "EDIT DATA SISWA";
-                                pilihansiswa[3] = "HAPUS DATA SISWA";
-                                
+                            MyPro.tuliswarna(22,7,"< Menu Data Siswa >",ConsoleColor.Black,ConsoleColor.Magenta);
+                            Console.SetCursorPosition(22, 8);
+                            string[] pilihansiswa = new string[4];
+                            pilihansiswa[0] = "Tambah Data Siswa";
+                            pilihansiswa[1] = "Tampil Data Siswa";
+                            pilihansiswa[2] = "Edit Data Siswa";
+                            pilihansiswa[3] = "Hapus Data Siswa";
 
-                                for (int a = 0; a < 4; a++)
+                            for (int a = 0; a < 4; a++)
+                            {
+                                MyPro.tulis(22, 8 + a, pilihansiswa[a]);
+                            }
+                            int psiswa = 0;
+                            MyPro.tuliswarna(22, 8, pilihansiswa[psiswa], ConsoleColor.DarkYellow, ConsoleColor.DarkBlue);
+                            
+                            
+
+                            do
+                            {
+                                tombol = Console.ReadKey(true);
+                                if (tombol.Key == ConsoleKey.DownArrow)
                                 {
-                                    MyPro.tulis(22, 8 + a, pilihansiswa[a]);
-                                }
-                                int psiswa = 0;       
-                                MyPro.tuliswarna(22, 8, pilihansiswa[psiswa], ConsoleColor.DarkYellow, ConsoleColor.DarkBlue);
-                                do
+                                    MyPro.tuliswarna(22, 8 + psiswa, pilihansiswa[psiswa], ConsoleColor.White, ConsoleColor.Black);
+                                    if (pilihansiswa[psiswa] == pilihansiswa[3])
                                     {
-                                        tombol = Console.ReadKey(true);
-                                        if (tombol.Key == ConsoleKey.DownArrow)
-                                        {
-                                            MyPro.tuliswarna(22, 8 + psiswa, pilihansiswa[psiswa], ConsoleColor.White, ConsoleColor.Black);
-                                            if (pilihansiswa[psiswa] == pilihansiswa[3])
-                                            {
-                                                psiswa = 0;
-                                            }
-                                            else { psiswa++; };
-                                            MyPro.tuliswarna(22, 8 + psiswa, pilihansiswa[psiswa], ConsoleColor.DarkYellow, ConsoleColor.DarkBlue);
+                                        psiswa = 0;
+                                    }
+                                    else { psiswa++; };
+                                    MyPro.tuliswarna(22, 8 + psiswa, pilihansiswa[psiswa], ConsoleColor.DarkYellow, ConsoleColor.DarkBlue);
 
+                                }
+
+                                if (tombol.Key == ConsoleKey.UpArrow)
+                                {
+                                    MyPro.tuliswarna(22, 8 + psiswa, pilihansiswa[psiswa], ConsoleColor.White, ConsoleColor.Black);
+                                    if (pilihansiswa[psiswa] == pilihansiswa[0])
+                                    {
+                                        psiswa = 3;
+                                    }
+                                    else { psiswa--; };
+                                    MyPro.tuliswarna(22, 8 + psiswa, pilihansiswa[psiswa], ConsoleColor.DarkYellow, ConsoleColor.DarkBlue);
+                                }
+                                
+                                                                
+                                if (tombol.Key == ConsoleKey.RightArrow)
+                                {
+                                    if (pilihansiswa[psiswa] == pilihansiswa[0])
+                                    {
+
+                                        if (tombol.Key == ConsoleKey.Backspace)
+                                        {
+                                            mainmenu = false;
                                         }
+                                        MyPro.tuliswarna(44, 7, "-- Masukkan Data Siswa --", ConsoleColor.Black, ConsoleColor.DarkYellow);
+                                        MyPro.tulis(44, 8, "NIS      : ");
+                                        string nis = Console.ReadLine();
+                                        MyPro.tulis(44, 9, "NAMA     : ");
+                                        string nama = Console.ReadLine();
+                                        MyPro.tulis(44, 10, "KELAS    : ");
+                                        string kelas = Console.ReadLine();
+
+                                        MyPro.tulis(44, 11, "Apakah Menyimpan Data Siswa ? [Y/N] : ");
+                                        string dtsiswa = Console.ReadLine();
+
+                                        if (dtsiswa.ToUpper() == "Y")
+                                        {
+                                            string query1 = "INSERT INTO siswa (nis,nama,kelas) VALUES (@nis,@nama,@kelas)";
+                                            string koneksi1string = "Provider=Microsoft.Ace.OleDB.12.0;Data Source=Database.accdb;";
+                                            OleDbConnection koneksi1 = new OleDbConnection(koneksi1string);
+                                            koneksi1.Open();
+                                            OleDbCommand cmd1 = new OleDbCommand(query1, koneksi1);
+                                            cmd1.Parameters.AddWithValue("nis", nis);
+                                            cmd1.Parameters.AddWithValue("nama", nama);
+                                            cmd1.Parameters.AddWithValue("kelas", kelas);
+                                            cmd1.ExecuteNonQuery();
+                                        }
+                                        
+                                        for (int a = 0; a < 5; a++)
+                                        {
+                                            MyPro.tulis(44, 7 + a, "                                       ");
+                                        }
+                                    }               
+                                }
+                            } while (tombol.Key != ConsoleKey.LeftArrow);
+
+                            for (int a = 0; a < 5; a++)
+                            {
+                                MyPro.tulis(22, 7 + a, "                    ");
+                            }
+                        }
+                }
                 
-                                        if (tombol.Key == ConsoleKey.UpArrow)
-                                        {
-                                            MyPro.tuliswarna(22, 8 + psiswa, pilihansiswa[psiswa], ConsoleColor.White, ConsoleColor.Black);
-                                            if (pilihansiswa[psiswa] == pilihansiswa[0])
-                                            {
-                                                psiswa = 3;
-                                            }
-                                            else { psiswa--; };
-                                            MyPro.tuliswarna(22, 8 + psiswa, pilihansiswa[psiswa], ConsoleColor.DarkYellow, ConsoleColor.DarkBlue);
-                                        }
+                if (tombol.Key == ConsoleKey.RightArrow)
+                {
+                    if (menu[pilih] == menu[1])
+                    {
+                        MyPro.tuliswarna(22, 7, "< Menu Data Guru >", ConsoleColor.Black, ConsoleColor.Magenta);
+                        Console.SetCursorPosition(22, 8);
+                        string[] pilihanguru = new string[4];
+                        pilihanguru[0] = "Tambah Data GUru";
+                        pilihanguru[1] = "Tampil Data Guru";
+                        pilihanguru[2] = "Edit Data Guru";
+                        pilihanguru[3] = "Hapus Data Guru";
 
-                                        if (tombol.Key == ConsoleKey.RightArrow)
-                                        {
-                                            MyPro.tuliswarna(22, 8 + psiswa, pilihansiswa[psiswa], ConsoleColor.White, ConsoleColor.Black);
-                                            if (pilihansiswa[psiswa] == pilihansiswa[0])
-                                            {
-                                                psiswa = 3;
-                                            }
-                                            else { psiswa++; };
-                                            MyPro.tuliswarna(22, 8 + psiswa, pilihansiswa[psiswa], ConsoleColor.DarkYellow, ConsoleColor.DarkBlue);
-                                        }
-                                    } while (tombol.Key != ConsoleKey.LeftArrow);
-                        
+                        for (int a = 0; a < 4; a++)
+                        {
+                            MyPro.tulis(22, 8 + a, pilihanguru[a]);
+                        }
+                        int pguru = 0;
+                        MyPro.tuliswarna(22, 8, pilihanguru[pguru], ConsoleColor.DarkYellow, ConsoleColor.DarkBlue);
 
 
-                               
+
+                        do
+                        {
+                            tombol = Console.ReadKey(true);
+                            if (tombol.Key == ConsoleKey.DownArrow)
+                            {
+                                MyPro.tuliswarna(22, 8 + pguru, pilihanguru[pguru], ConsoleColor.White, ConsoleColor.Black);
+                                if (pilihanguru[pguru] == pilihanguru[3])
+                                {
+                                    pguru = 0;
+                                }
+                                else { pguru++; };
+                                MyPro.tuliswarna(22, 8 + pguru, pilihanguru[pguru], ConsoleColor.DarkYellow, ConsoleColor.DarkBlue);
+                                 
+                            }
+
+                            if (tombol.Key == ConsoleKey.UpArrow)
+                            {
+                                MyPro.tuliswarna(22, 8 + pguru, pilihanguru[pguru], ConsoleColor.White, ConsoleColor.Black);
+                                if (pilihanguru[pguru] == pilihanguru[0])
+                                {
+                                    pguru = 3;
+                                }
+                                else { pguru--; };
+                                MyPro.tuliswarna(22, 8 + pguru, pilihanguru[pguru], ConsoleColor.DarkYellow, ConsoleColor.DarkBlue);
+                            }
+
+
+                            if (tombol.Key == ConsoleKey.RightArrow)
+                            {
+                                if (pilihanguru[pguru] == pilihanguru[0])
+                                {
+
+                                    if (tombol.Key == ConsoleKey.Backspace)
+                                    {
+                                        mainmenu = false;
+                                    }
+                                    MyPro.tuliswarna(44, 7, "-- Masukkan Data Guru --", ConsoleColor.Black, ConsoleColor.DarkYellow);
+                                    MyPro.tulis(44, 8, "NIP      : ");
+                                    string nip = Console.ReadLine();
+                                    MyPro.tulis(44, 9, "NAMA     : ");
+                                    string nama = Console.ReadLine();
+                                    MyPro.tulis(44, 10, "JABATAN    : ");
+                                    string jabatan = Console.ReadLine();
+                                    MyPro.tulis(44, 11, "ALAMAT    : ");
+                                    string alamat = Console.ReadLine();
+
+                                    MyPro.tulis(44, 12, "Apakah Menyimpan Data Guru ? [Y/N] : ");
+                                    string dtsiswa = Console.ReadLine();
+
+                                    if (dtsiswa.ToUpper() == "Y")
+                                    {
+                                        string query1 = "INSERT INTO guru (nip,nama,jabatan,alamat) VALUES (@nip,@nama,@jabatan,@alamat)";
+                                        string koneksi1string = "Provider=Microsoft.Ace.OleDB.12.0;Data Source=Database.accdb;";
+                                        OleDbConnection koneksi1 = new OleDbConnection(koneksi1string);
+                                        koneksi1.Open();
+                                        OleDbCommand cmd1 = new OleDbCommand(query1, koneksi1);
+                                        cmd1.Parameters.AddWithValue("nip", nip);
+                                        cmd1.Parameters.AddWithValue("nama", nama);
+                                        cmd1.Parameters.AddWithValue("jabatan", jabatan);
+                                        cmd1.Parameters.AddWithValue("alamat", alamat);
+                                        cmd1.ExecuteNonQuery();
+                                    }
+
+                                    for (int a = 0; a < 6; a++)
+                                    {
+                                        MyPro.tulis(44, 7 + a, "                                       ");
+                                    }
+                                }
+                            }
+                        } while (tombol.Key != ConsoleKey.LeftArrow);
+
+                        for (int a = 0; a < 5; a++)
+                        {
+                            MyPro.tulis(22, 7 + a, "                    ");
                         }
                     }
+                }
             } while (mainmenu);
+                   
+            
 
                
 
