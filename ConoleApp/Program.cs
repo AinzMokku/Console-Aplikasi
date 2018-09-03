@@ -131,11 +131,6 @@ namespace ConoleApp
                                 {
                                     if (pilihansiswa[psiswa] == pilihansiswa[0])
                                     {
-
-                                        if (tombol.Key == ConsoleKey.Backspace)
-                                        {
-                                            mainmenu = false;
-                                        }
                                         MyPro.tuliswarna(44, 7, "-- Masukkan Data Siswa --", ConsoleColor.Black, ConsoleColor.DarkYellow);
                                         MyPro.tulis(44, 8, "NIS      : ");
                                         string nis = Console.ReadLine();
@@ -166,11 +161,58 @@ namespace ConoleApp
                                         }
                                     }               
                                 }
+
+                                if (tombol.Key == ConsoleKey.RightArrow)
+                                { 
+                                    if(pilihansiswa[psiswa] == pilihansiswa[1])
+                                    {
+                                        MyPro.tuliswarna(44,7,"// Tampil Data Siswa \\",ConsoleColor.DarkGreen,ConsoleColor.White);
+                                        MyPro.tuliswarna(44, 9, "Masukkan Nama Siswa / Kosong Untuk Menampilkan Semua Data ? : ", ConsoleColor.Black, ConsoleColor.White);
+                                        string cari = Console.ReadLine();
+
+                                        string koneksistring = "Provider=Microsoft.Ace.OleDB.12.0;Data Source=Database.accdb";
+                                        OleDbConnection koneksi = new OleDbConnection(koneksistring);
+                                        koneksi.Open();
+
+                                        string query;
+                                        if(cari == "")
+                                        {
+                                            query = "SELECT nis,nama,kelas FROM siswa";
+                                        }
+                                        else
+                                        {
+                                            query = "SELECT nis,nama,kelas FROM siswa WHERE nama '"+ cari +"'";
+                                            //query = "SELECT nis,nama,kelas FROM siswa WHERE nama LIKE '%" +cari+ "%'";   ------> pendcarian sebagian kata
+                                        };
+
+                                        OleDbCommand cmd = new OleDbCommand(query,koneksi);
+                                        OleDbDataReader reader = cmd.ExecuteReader();
+
+                                        DataTable dtsiswa = new DataTable();
+                                        dtsiswa.Load(reader);
+
+                                        Console.SetCursorPosition(44, 11);
+                                        if(dtsiswa.Rows.Count > 0)
+                                        {
+                                            foreach (DataRow row in dtsiswa.Rows)
+                                            {
+                                                Console.SetCursorPosition(44,10);
+                                                Console.Write(" | {0,-10} | {1,-50} | {2,-5} | ",row["nis"],row["nama"],row["kelas"]);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("Data Not Found");
+                                        }
+                                    }
+                                    
+                                }
                             } while (tombol.Key != ConsoleKey.LeftArrow);
 
                             for (int a = 0; a < 5; a++)
                             {
                                 MyPro.tulis(22, 7 + a, "                    ");
+                                MyPro.tulis(44, 7 + a, "                                                                         ");
                             }
                         }
                 }
@@ -265,11 +307,57 @@ namespace ConoleApp
                                     }
                                 }
                             }
+                            if (tombol.Key == ConsoleKey.RightArrow)
+                            {
+                                if (pilihanguru[pguru] == pilihanguru[1])
+                                {
+                                    MyPro.tuliswarna(44, 7, "// Tampil Data Guru \\", ConsoleColor.DarkGreen, ConsoleColor.White);
+                                    MyPro.tuliswarna(44, 9, "Masukkan Nama Guru / Kosong Untuk Menampilkan Semua Data ? : ", ConsoleColor.Black, ConsoleColor.White);
+                                    string cari = Console.ReadLine();
+
+                                    string koneksistring = "Provider=Microsoft.Ace.OleDB.12.0;Data Source=Database.accdb";
+                                    OleDbConnection koneksi = new OleDbConnection(koneksistring);
+                                    koneksi.Open();
+
+                                    string query;
+                                    if (cari == "")
+                                    {
+                                        query = "SELECT nip,nama,jabatan FROM guru";
+                                    }
+                                    else
+                                    {
+                                        query = "SELECT nip,nama,jabatan FROM guru WHERE nama '" + cari + "'";
+                                        //query = "SELECT nis,nama,kelas FROM siswa WHERE nama LIKE '%" +cari+ "%'";   ------> pendcarian sebagian kata
+                                    };
+
+                                    OleDbCommand cmd = new OleDbCommand(query, koneksi);
+                                    OleDbDataReader reader = cmd.ExecuteReader();
+
+                                    DataTable dtguru = new DataTable();
+                                    dtguru.Load(reader);
+
+                                    Console.SetCursorPosition(44, 11);
+                                    if (dtguru.Rows.Count > 0)
+                                    {
+                                        foreach (DataRow row in dtguru.Rows)
+                                        {
+                                            Console.SetCursorPosition(44, 10);
+                                            Console.Write(" | {0,-10} | {1,-50} | {2,-5} | ", row["nis"], row["nama"], row["kelas"]);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Data Not Found");
+                                    }
+                                }
+
+                            }
                         } while (tombol.Key != ConsoleKey.LeftArrow);
 
                         for (int a = 0; a < 5; a++)
                         {
                             MyPro.tulis(22, 7 + a, "                    ");
+                            MyPro.tulis(44, 7 + a, "                                                                         ");
                         }
                     }
                 }
