@@ -15,8 +15,8 @@ namespace ConoleApp
         {
             Console.CursorVisible = false;
             MyPro.buatkotak(2,1,118,5,ConsoleColor.Green,ConsoleColor.Black);
-            MyPro.buatkotak(2, 6, 20, 30, ConsoleColor.DarkGray, ConsoleColor.Black);
-            MyPro.buatkotak(21, 6, 42, 30, ConsoleColor.DarkGray, ConsoleColor.Black);
+            MyPro.buatkotak(2, 6, 20, 17, ConsoleColor.DarkGray, ConsoleColor.Black);
+            MyPro.buatkotak(21, 6, 42, 14, ConsoleColor.DarkGray, ConsoleColor.Black);
             MyPro.buatkotak(43, 6, 118, 30, ConsoleColor.DarkGray, ConsoleColor.Black);
 
             string kepala = "Wearnes Education Center Madiun";
@@ -204,6 +204,12 @@ namespace ConoleApp
                                         {
                                             Console.WriteLine("Data Not Found");
                                         }
+
+                                        Console.ReadKey();
+                                        for (int a = 0; a < 5; a++)
+                                        {
+                                            MyPro.tulis(44, 7 + a, "                                                                         ");
+                                        }
                                     }
                                     
                                 }
@@ -306,7 +312,6 @@ namespace ConoleApp
                             for (int a = 0; a < 5; a++)
                             {
                                 MyPro.tulis(22, 7 + a, "                    ");
-                                MyPro.tulis(44, 7 + a, "                                                                         ");
                             }
                         }
                 }
@@ -443,6 +448,11 @@ namespace ConoleApp
                                     {
                                         Console.WriteLine("Data Not Found");
                                     }
+                                    Console.ReadKey();
+                                    for (int a = 0; a < 5; a++)
+                                    {
+                                        MyPro.tulis(44, 7 + a, "                                                                         ");
+                                    }
                                 }
 
                             }
@@ -546,7 +556,6 @@ namespace ConoleApp
                         for (int a = 0; a < 5; a++)
                         {
                             MyPro.tulis(22, 7 + a, "                    ");
-                            MyPro.tulis(44, 7 + a, "                                                                         ");
                         }
                     }
                 }
