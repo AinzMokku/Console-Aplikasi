@@ -207,6 +207,100 @@ namespace ConoleApp
                                     }
                                     
                                 }
+                                if(tombol.Key == ConsoleKey.RightArrow)
+                                {
+                                    if (pilihansiswa[psiswa] == pilihansiswa[2])
+                                    {
+                                        MyPro.tuliswarna(44, 7, "_Edit Data Siswa_", ConsoleColor.Black, ConsoleColor.DarkGreen);
+                                        MyPro.tulis(44, 9, "Masukkkan Nis Yang Mau Dirubah : ");
+                                        string nislama = Console.ReadLine();
+
+                                        string query = "SELECT* FROM siswa WHERE nis=@nis";
+                                        string koneksistring = "Provider=Microsoft.Ace.OleDB.12.0;Data Source=Database.accdb";
+                                        OleDbConnection koneksi = new OleDbConnection(koneksistring);
+                                        koneksi.Open();
+
+                                        OleDbCommand cmd = new OleDbCommand(query, koneksi);
+                                        cmd.Parameters.AddWithValue("@nis", nislama);
+                                        OleDbDataReader reader = cmd.ExecuteReader();
+
+                                        DataTable dtsiswa = new DataTable();
+                                        dtsiswa.Load(reader);
+                                        
+                                        if(dtsiswa.Rows.Count == 1)
+                                        {
+                                            DataRow row = dtsiswa.Rows[0];
+
+                                            MyPro.tulis(44, 11, "Nis      : " + row["nis"]);
+                                            MyPro.tulis(44, 12, "Nama     : " + row["nama"]);
+                                            MyPro.tulis(44, 13, "Kelas    : " + row["kelas"]);
+
+                                            MyPro.tulis(44, 15, "Nis Baru   : ");
+                                            string nisbaru = Console.ReadLine();
+                                            MyPro.tulis(44, 16, "Nama Baru  : ");
+                                            string nama = Console.ReadLine();
+                                            MyPro.tulis(44, 17, "Kelas Baru : ");
+                                            string kelas = Console.ReadLine();
+
+                                            MyPro.tulis(44, 19, "Update Data Siswa : [Y/N] ");
+                                            string jawab = Console.ReadLine();
+
+                                            if(jawab.ToUpper() == "Y")
+                                            {
+                                                query = "UPDATE siswa SET nis=@nisbaru,nama=@nama,kelas=@Kelas WHERE nis=@nis";
+                                                cmd = new OleDbCommand(query, koneksi);
+
+                                                cmd.Parameters.AddWithValue("@nisbaru", nisbaru);
+                                                cmd.Parameters.AddWithValue("@nama", nama);
+                                                cmd.Parameters.AddWithValue("@kelas", kelas);
+                                                cmd.Parameters.AddWithValue("@nis", nisbaru);
+
+                                                cmd.ExecuteNonQuery();
+                                            }
+
+                                            //try { }catch (OleDbException olex) { olex.Message -----> menampilkan pesan error } ----> untuk mengetes error dari oleDb
+                                            //try { }catch (Exception) { }           ----> untuk mengetes error selain oleDb
+                                        }else if(dtsiswa.Rows.Count == 0)
+                                            {
+                                                MyPro.tulis(44, 11, "Data Yang Anda Masukkan Salah....!!!!");
+                                                    Console.ReadLine();
+                                                    for (int a = 0; a < 5; a++)
+                                                    {
+                                                        MyPro.tulis(44, 7 + a, "                                                                         ");
+                                                    }
+                                            }
+
+                                    }
+                                }
+                                if (tombol.Key == ConsoleKey.RightArrow)
+                                {
+                                    if (pilihansiswa[psiswa] == pilihansiswa[3])
+                                    {
+                                        MyPro.tuliswarna(44, 7, "+ Hapus Data Siswa +",ConsoleColor.Black,ConsoleColor.DarkGreen);
+                                        MyPro.tulis(44, 9, "Masukkan Nis Yang Mau Dihapus : ");
+                                        string nis = Console.ReadLine();
+
+                                        MyPro.tulis(44, 11, "Anda Yakin Data Siswa Ini ? [Y/N] ");
+                                        string jawab = Console.ReadLine();
+
+                                        if (jawab.ToUpper() == "Y")
+                                        {
+                                            string koneksistring = "Provider=Microsoft.Ace.OleDB.12.0;Data Source=Database.accdb";
+                                            OleDbConnection koneksi = new OleDbConnection(koneksistring);
+                                            koneksi.Open();
+
+                                            string query = "DELETE FROM siswa WHERE nis=@nis";
+                                            OleDbCommand cmd = new OleDbCommand(query, koneksi);
+                                            cmd.Parameters.AddWithValue("@nis", nis);
+                                            cmd.ExecuteNonQuery();
+                                        }
+                                        for (int a = 0; a < 5; a++)
+                                        {
+                                            MyPro.tulis(44, 7 + a, "                                                                         ");
+                                        }
+
+                                    }
+                                }
                             } while (tombol.Key != ConsoleKey.LeftArrow);
 
                             for (int a = 0; a < 5; a++)
@@ -351,6 +445,101 @@ namespace ConoleApp
                                     }
                                 }
 
+                            }
+                            if (tombol.Key == ConsoleKey.RightArrow)
+                            {
+                                if (pilihanguru[pguru] == pilihanguru[2])
+                                {
+                                    MyPro.tuliswarna(44, 7, "_Edit Data Guru_", ConsoleColor.Black, ConsoleColor.DarkGreen);
+                                    MyPro.tulis(44, 9, "Masukkkan Nip Yang Mau Dirubah : ");
+                                    string niplama = Console.ReadLine();
+
+                                    string query = "SELECT* FROM guru WHERE nip=@nip";
+                                    string koneksistring = "Provider=Microsoft.Ace.OleDB.12.0;Data Source=Database.accdb";
+                                    OleDbConnection koneksi = new OleDbConnection(koneksistring);
+                                    koneksi.Open();
+
+                                    OleDbCommand cmd = new OleDbCommand(query, koneksi);
+                                    cmd.Parameters.AddWithValue("@nip", niplama);
+                                    OleDbDataReader reader = cmd.ExecuteReader();
+
+                                    DataTable dtguru = new DataTable();
+                                    dtguru.Load(reader);
+
+                                    if (dtguru.Rows.Count == 1)
+                                    {
+                                        DataRow row = dtguru.Rows[0];
+
+                                        MyPro.tulis(44, 11, "Nip        : " + row["nip"]);
+                                        MyPro.tulis(44, 12, "Nama       : " + row["nama"]);
+                                        MyPro.tulis(44, 13, "Jabatan    : " + row["jabatan"]);
+
+                                        MyPro.tulis(44, 15, "Nip Baru     : ");
+                                        string nipbaru = Console.ReadLine();
+                                        MyPro.tulis(44, 16, "Nama Baru    : ");
+                                        string nama = Console.ReadLine();
+                                        MyPro.tulis(44, 17, "Jabatan Baru : ");
+                                        string jabatan = Console.ReadLine();
+
+                                        MyPro.tulis(44, 19, "Update Data Guru : [Y/N] ");
+                                        string jawab = Console.ReadLine();
+
+                                        if (jawab.ToUpper() == "Y")
+                                        {
+                                            query = "UPDATE guru SET nip=@nipbaru,nama=@nama,abatan=@jabatan WHERE nip=@nip";
+                                            cmd = new OleDbCommand(query, koneksi);
+
+                                            cmd.Parameters.AddWithValue("@nipbaru", nipbaru);
+                                            cmd.Parameters.AddWithValue("@nama", nama);
+                                            cmd.Parameters.AddWithValue("@jabatan", jabatan);
+                                            cmd.Parameters.AddWithValue("@nis", nipbaru);
+
+                                            cmd.ExecuteNonQuery();
+                                        }
+
+                                        //try { }catch (OleDbException olex) { olex.Message -----> menampilkan pesan error } ----> untuk mengetes error dari oleDb
+                                        //try { }catch (Exception) { }           ----> untuk mengetes error selain oleDb
+                                    }
+                                    else if (dtguru.Rows.Count == 0)
+                                    {
+                                        MyPro.tulis(44, 11, "Data Yang Anda Masukkan Salah....!!!!");
+                                        Console.ReadLine();
+                                        for (int a = 0; a < 5; a++)
+                                        {
+                                            MyPro.tulis(44, 7 + a, "                                                                         ");
+                                        }
+                                    }
+
+                                }
+                            }
+                            if (tombol.Key == ConsoleKey.RightArrow)
+                            {
+                                if (pilihanguru[pguru] == pilihanguru[3])
+                                {
+                                    MyPro.tuliswarna(44, 7, "+ Hapus Data Guru +", ConsoleColor.Black, ConsoleColor.DarkGreen);
+                                    MyPro.tulis(44, 9, "Masukkan Nip Yang Mau Dihapus : ");
+                                    string nip = Console.ReadLine();
+
+                                    MyPro.tulis(44, 11, "Anda Yakin Data Guru Ini ? [Y/N] ");
+                                    string jawab = Console.ReadLine();
+
+                                    if (jawab.ToUpper() == "Y")
+                                    {
+                                        string koneksistring = "Provider=Microsoft.Ace.OleDB.12.0;Data Source=Database.accdb";
+                                        OleDbConnection koneksi = new OleDbConnection(koneksistring);
+                                        koneksi.Open();
+
+                                        string query = "DELETE FROM guru WHERE nip=@nip";
+                                        OleDbCommand cmd = new OleDbCommand(query, koneksi);
+                                        cmd.Parameters.AddWithValue("@nip", nip);
+                                        cmd.ExecuteNonQuery();
+                                    }
+                                    for (int a = 0; a < 5; a++)
+                                    {
+                                        MyPro.tulis(44, 7 + a, "                                                                         ");
+                                    }
+
+                                }
                             }
                         } while (tombol.Key != ConsoleKey.LeftArrow);
 
